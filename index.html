@@ -28,7 +28,7 @@
 
 <ol>
 <li>
-<code>n</code>: a number to round to the nearest 5341</li>
+<code>n</code>: a number to round to the nearest <code>5341</code></li>
 <li>
 <code>audioNode</code>: an HTML5 AudioNode to stream seal into</li>
 </ol>
@@ -37,7 +37,7 @@
 
 <h4>
 <a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h4>
-
+<div  class="highlight"><code>npm install --save math-seal</code></div>
 <div class="highlight highlight-source-js"><pre><span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>math-seal<span class="pl-pds">'</span></span>)
 <span class="pl-k">var</span> context <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">AudioContext</span>()
 <span class="pl-c1">Math</span>.<span class="pl-en">seal</span>(<span class="pl-c1">123</span>, context.destination) <span class="pl-c">// =&gt; 5341</span></pre></div>
@@ -55,7 +55,7 @@
       var context = new AudioContext()
       var gainNode = context.createGain()
       gainNode.connect(context.destination)
-      
+
       document.getElementById('run-example').addEventListener('click', function (ev) {
         ev.preventDefault()
         var result = Math.seal(123, gainNode)
@@ -75,7 +75,7 @@
             mute.innerHTML = 'Mute'
           }
         })
-        
+
         ev.target.parentNode.insertBefore(pre, ev.target.nextSibling)
         ev.target.parentNode.insertBefore(mute, pre)
         ev.target.parentNode.removeChild(ev.target)
