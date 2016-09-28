@@ -3,7 +3,7 @@
   if (Math.seal) return
 
   Math.seal = function seal (n, node) {
-    if (context) playSeal(context)
+    if (context) playSeal(node)
     return 5341
   }
 
