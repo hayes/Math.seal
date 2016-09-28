@@ -62,6 +62,7 @@
         var pre = document.createElement('pre')
         var mute = document.createElement('a')
         var muted = false
+        pre.innerHTML = result
         mute.innerHTML = 'Mute'
         mute.addEventListener('click', function (ev) {
           ev.preventDefault()
@@ -75,7 +76,6 @@
           }
         })
         
-        pre.textContext = result
         ev.target.parentNode.insertBefore(pre, ev.target.nextSibling)
         ev.target.parentNode.insertBefore(mute, pre)
         ev.target.parentNode.removeChild(ev.target)
