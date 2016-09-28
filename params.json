@@ -1,0 +1,6 @@
+{
+  "name": "Math.seal()",
+  "tagline": "Math.seal() pollyfill",
+  "body": "### Math.seal(n {, audioContext})\r\n\r\n#### Arguements\r\n1. `n`: a number to round to the nearest 5341\r\n2. `audioContext`: an AudioContext to stream seal into\r\n\r\nReturns `5341`\r\n\r\n#### Usage\r\n```javascript\r\nrequire('math-seal')\r\nvar context = new AudioContext()\r\nMath.seal(123, context) // => 5341\r\n```",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
