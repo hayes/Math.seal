@@ -2,12 +2,12 @@
   var url = './seal.mp3'
   if (Math.seal) return
 
-  Math.seal = function seal (n, context) {
-    if (context) playSeal(context)
+  Math.seal = function seal (n, node) {
+    if (context) playSeal(node)
     return 5341
   }
 
-  function playSeal (context) {
+  function playSeal (node) {
     var request = new XMLHttpRequest()
     request.open('GET', url, true)
     request.responseType = 'arraybuffer'
@@ -16,8 +16,8 @@
       context.decodeAudioData(request.response, function (buffer) {
         var source = context.createBufferSource()
         source.buffer = buffer
-        source.connect(context.destination)
-        source.start(0)                    
+        source.connect(node)
+        source.start(0)
       }, console.error.bind(console))
     }
 
