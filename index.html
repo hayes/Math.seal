@@ -58,7 +58,7 @@
       
       document.getElementById('run-example').addEventListener('click', function (ev) {
         ev.preventDefault()
-        var result = Math.seal(123, context)
+        var result = Math.seal(123, gainNode)
         var pre = document.createElement('pre')
         var mute = document.createElement('a')
         var muted = false
