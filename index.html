@@ -8,6 +8,7 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <script src="./index.js"></script>
   </head>
   <body>
     <section class="page-header">
@@ -20,7 +21,7 @@
 
     <section class="main-content">
       <h3>
-<a id="mathsealn--audiocontext" class="anchor" href="#mathsealn--audiocontext" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Math.seal(n {, audioContext})</h3>
+<a id="mathsealn--audiocontext" class="anchor" href="#mathsealn--audiocontext" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Math.seal(n {, audioNode})</h3>
 
 <h4>
 <a id="arguements" class="anchor" href="#arguements" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Arguements</h4>
@@ -29,7 +30,7 @@
 <li>
 <code>n</code>: a number to round to the nearest 5341</li>
 <li>
-<code>audioContext</code>: an AudioContext to stream seal into</li>
+<code>audioNode</code>: an HTML5 AudioNode to stream seal into</li>
 </ol>
 
 <p>Returns <code>5341</code></p>
@@ -39,7 +40,7 @@
 
 <div class="highlight highlight-source-js"><pre><span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>math-seal<span class="pl-pds">'</span></span>)
 <span class="pl-k">var</span> context <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">AudioContext</span>()
-<span class="pl-c1">Math</span>.<span class="pl-en">seal</span>(<span class="pl-c1">123</span>, context) <span class="pl-c">// =&gt; 5341</span></pre></div>
+<span class="pl-c1">Math</span>.<span class="pl-en">seal</span>(<span class="pl-c1">123</span>, context.destination) <span class="pl-c">// =&gt; 5341</span></pre></div>
       <br>
       <a id="run-example">Run this example</a>
       <footer class="site-footer">
@@ -52,12 +53,32 @@
 
     <script>
       var context = new AudioContext()
+      var gainNode = audioCtx.createGain()
+      gainNode.connect(context.destination)
+      
       document.getElementById('run-example').addEventListener('click', function (ev) {
         ev.preventDefault()
         var result = Math.seal(123, context)
         var pre = document.createElement('pre')
+        var mute = document.createElement('a')
+        var muted = false
+        mute.innerHTML = 'Mute'
+        mute.addEventListener('click', function (ev) {
+          ev.preventDefault()
+          muted = !muted
+          if (muted) {
+            gainNode.gain.value = 0
+            mute.innerHTML = 'Unmute'
+          } else {
+            gainNode.gain.value = 1
+            mute.innerHTML = 'Mute'
+          }
+        })
+        
         pre.textContext = result
-        ev.target.parent.insertBefore(pre, ev.target.nextSibling)
+        ev.target.parentNode.insertBefore(pre, ev.target.nextSibling)
+        ev.target.parentNode.insertBefore(mute, pre)
+        ev.target.parentNode.removeChild(ev.target)
       })
     </script>
   </body>
